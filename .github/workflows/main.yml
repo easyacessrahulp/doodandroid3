@@ -10,7 +10,10 @@ permissions:
 
 jobs:
   apk:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
     steps:
       - name: Get the code
         uses: actions/checkout@v4
@@ -21,8 +24,8 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Android tools
-        uses: android-actions/setup-android@v3
+      - name: Accept Android licences
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
 
       - name: Gradle 8.9
         uses: gradle/actions/setup-gradle@v4
