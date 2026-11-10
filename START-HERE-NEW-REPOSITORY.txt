@@ -1,0 +1,53 @@
+DOOD ANDROID APP v1.3 - BUILD ON A NEW GITHUB REPOSITORY
+
+PART 1. Prepare the files on your PC
+1. Right-click dood-android-v1.3-full.zip > Extract All.
+2. Open the extracted folder, then the "dood-android" folder inside it.
+3. Turn on hidden items: File Explorer > View > Show > Hidden items.
+   You should see: app, .github, WORKFLOW-FILE-COPY, build.gradle.kts, settings.gradle.kts,
+   gradle.properties, README.md, .gitignore.
+
+PART 2. Create the repository
+1. Go to github.com and sign in.
+2. Click the green "New" button (or + at the top > New repository).
+3. Repository name: dood-android2   (any new name).
+4. Choose Private.
+5. Do NOT tick any "Add a README / .gitignore / license" boxes.
+6. Click "Create repository".
+
+PART 3. Upload the files
+1. On the new empty repository page, click "uploading an existing file".
+2. On your PC, inside the "dood-android" folder press Ctrl+A to select everything
+   (app, .github, WORKFLOW-FILE-COPY, and all the loose files) and drag it into the GitHub page.
+   Wait until every file shows as uploaded (the list is long; wait for it to finish).
+3. Click "Commit changes" (green button at the bottom).
+
+PART 4. Make sure the workflow file is there
+1. On the repository page, click the folder ".github", then "workflows".
+   You must see build-apk.yml.
+2. If there is no ".github" folder:
+   a. Click Add file > Create new file.
+   b. In the name box type exactly:  .github/workflows/build-apk.yml
+   c. Open WORKFLOW-FILE-COPY\build-apk.yml from the folder on your PC with Notepad,
+      press Ctrl+A, Ctrl+C, and paste into the GitHub editor.
+   d. Click Commit changes (twice).
+
+PART 5. Allow the Releases page to be filled (one time)
+1. Repository Settings > Actions > General.
+2. Scroll to "Workflow permissions", choose "Read and write permissions", click Save.
+
+PART 6. Build
+1. Click the "Actions" tab. If it asks, click "I understand my workflows, go ahead and enable them".
+2. "Build DOOD APK" runs by itself. If not: click Build DOOD APK on the left > Run workflow > Run workflow.
+3. Wait 5 to 8 minutes. Green tick = success. Red cross = failure (see Part 8).
+
+PART 7. Download and install
+1. Click the finished run's name, scroll to the bottom, "Artifacts" > DOOD-apk. Unzip to get DOOD.apk.
+   (Or on the phone: repository > Releases > DOOD APK (latest) > DOOD.apk.)
+2. Send DOOD.apk to the phone, tap it, allow "Install unknown apps", Install.
+   Install over the old version: your address and sign-in stay.
+3. Open DOOD, tap Allow for notifications.
+
+PART 8. If the run is red
+1. Click the run > the red "build" box > the step with the red cross.
+2. Copy all lines that start with "e: file:///" (and a few lines after) and send them to Claude.
