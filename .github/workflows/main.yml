@@ -1,0 +1,54 @@
+name: Build DOOD APK
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Android tools
+        uses: android-actions/setup-android@v3
+
+      - name: Gradle 8.9
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.9"
+
+      - name: Build the APK
+        run: gradle assembleRelease --no-daemon --stacktrace
+
+      - name: Name the file
+        run: cp app/build/outputs/apk/release/app-release.apk DOOD.apk
+
+      - name: Save the APK so you can download it
+        uses: actions/upload-artifact@v4
+        with:
+          name: DOOD-apk
+          path: DOOD.apk
+
+      - name: Publish a download link (Releases page)
+        continue-on-error: true
+        uses: ncipollo/release-action@v1
+        with:
+          tag: latest
+          name: DOOD APK (latest)
+          body: "Open this page on your phone and tap DOOD.apk to download it."
+          artifacts: DOOD.apk
+          allowUpdates: true
+          replacesArtifacts: true
+          makeLatest: true
